@@ -1,16 +1,242 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ArtfulS</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ArtfulS — Musikbusiness & Management</title>
+  <meta name="description" content="Artist Management, Release-Strategie, Marketing & Booking.">
+  <link rel="icon" href="favicon.png">
   <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 10%; }
-    h1 { color: #333; }
+    /* ---------- Design-Variablen ---------- */
+    :root{
+      --bg: #0b0d10;
+      --bg-elev: #12151a;
+      --text: #e9edf1;
+      --muted:#97a2ad;
+      --brand:#6ee7b7;    /* Mint */
+      --brand-2:#60a5fa;  /* Blau */
+      --card:#0f1216;
+      --border:#1e242c;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    :root.light{
+      --bg:#f7f8fa; --bg-elev:#ffffff; --text:#101318; --muted:#606b76;
+      --brand:#0ea5e9; --brand-2:#10b981; --card:#ffffff; --border:#e5e9ef;
+      --shadow: 0 10px 30px rgba(16,19,24,.08);
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f7f8fa; --bg-elev:#ffffff; --text:#101318; --muted:#606b76;
+      --brand:#0ea5e9; --brand-2:#10b981; --card:#ffffff; --border:#e5e9ef;
+      --shadow: 0 10px 30px rgba(16,19,24,.08);}
+    }
+
+    /* ---------- Base ---------- */
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin-inline:auto;padding:24px}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;
+      padding:.85rem 1.1rem;border-radius:14px;font-weight:600;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#0b0d10; border:0; box-shadow: var(--shadow);
+    }
+    .btn.ghost{
+      background:transparent; color:var(--text); border:1px solid var(--border);
+      box-shadow:none;
+    }
+    .pill{padding:.35rem .7rem;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.85rem}
+
+    /* ---------- Header ---------- */
+    header{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter:saturate(180%) blur(8px);
+      background: color-mix(in oklab, var(--bg-elev) 80%, transparent);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
+    .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:var(--shadow)}
+    .nav a{color:var(--muted)}
+    .nav-links{display:flex;gap:1rem;flex-wrap:wrap}
+    .toggle{border:1px solid var(--border);background:transparent;border-radius:12px;padding:.5rem .7rem;color:var(--muted);cursor:pointer}
+
+    /* ---------- Hero ---------- */
+    .hero{padding:72px 0 36px}
+    .hero h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.1;margin:0}
+    .hero p{color:var(--muted);max-width:60ch}
+    .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:18px}
+
+    /* ---------- Grid Sections ---------- */
+    section{padding:52px 0;border-top:1px solid var(--border)}
+    h2{font-size:clamp(1.4rem,3.6vw,2rem);margin:0 0 18px}
+    .grid{display:grid;gap:16px}
+    .grid.cards{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+    .muted{color:var(--muted)}
+
+    /* ---------- Roster ---------- */
+    .artist{display:flex;gap:14px;align-items:center}
+    .avatar{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2))}
+    .tag{font-size:.75rem;color:var(--muted)}
+
+    /* ---------- Footer ---------- */
+    footer{border-top:1px solid var(--border);padding:28px 0;color:var(--muted)}
+    .footer-grid{display:grid;gap:16px;grid-template-columns: 1fr auto}
+    @media (max-width:700px){.footer-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <h1>Willkommen bei ArtfulS 🎨</h1>
-  <p>Dies ist meine neue GitHub-Website.</p>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="ArtfulS Start">
+        <span class="logo"></span><span>ArtfulS</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#services">Leistungen</a>
+        <a href="#artists">Roster</a>
+        <a href="#cases">Cases</a>
+        <a href="#kontakt">Kontakt</a>
+        <button id="themeToggle" class="toggle" title="Dark/Light umschalten">☾/☀︎</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="container hero">
+    <span class="pill">Musikbusiness & Artist Management</span>
+    <h1>Wir bauen Karrieren – Strategie, Releases, Marketing & Booking.</h1>
+    <p class="muted">
+      ArtfulS begleitet Artists, Labels und Marken von der Vision bis zur Umsetzung:
+      Positionierung, Release-Planung, Digitalvertrieb, Kampagnen, Tourplanung und Business Development.
+    </p>
+    <div class="hero-cta">
+      <a class="btn" href="#kontakt">Unverbindlich anfragen</a>
+      <a class="btn ghost" href="#services">Unsere Leistungen</a>
+    </div>
+  </main>
+
+  <!-- Leistungen -->
+  <section id="services">
+    <div class="container">
+      <h2>Leistungen</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Artist Management</h3>
+          <p class="muted">Roadmap, Teamaufbau, Deals, Rechte & Finanzen – wir koordinieren alle Zahnräder.</p>
+        </article>
+        <article class="card">
+          <h3>Release & Label-Service</h3>
+          <p class="muted">Zeitplan, Vertrieb, Pitching, Pre-Saves, Cover/Canvas – datenbasiert & kreativ.</p>
+        </article>
+        <article class="card">
+          <h3>Marketing & Content</h3>
+          <p class="muted">Social & Paid, Creator-Kollabs, Storytelling, EPK/Pressetexte, Newsletter.</p>
+        </article>
+        <article class="card">
+          <h3>Live & Booking</h3>
+          <p class="muted">Show-Konzept, Routing, Promotion, Abrechnung – mit starken Partnern im Netzwerk.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roster -->
+  <section id="artists">
+    <div class="container">
+      <h2>Roster</h2>
+      <div class="grid cards">
+        <div class="card artist">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <strong>Artist Name</strong><div class="tag">Pop / DE</div>
+            <div class="muted">> 2M Streams · Major Support</div>
+          </div>
+        </div>
+        <div class="card artist">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <strong>Artist Name</strong><div class="tag">Hip-Hop / EN</div>
+            <div class="muted">NRW Clubtour · TikTok Growth</div>
+          </div>
+        </div>
+        <div class="card artist">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <strong>Artist Name</strong><div class="tag">Electronic</div>
+            <div class="muted">Festival Slots · intl. Collabs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cases -->
+  <section id="cases">
+    <div class="container">
+      <h2>Ausgewählte Cases</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>#1 Single-Rollout</h3>
+          <p class="muted">6-Wochen-Plan mit TikTok-Hooks, UGC-Seeding und Creator-Budget. +230% Monthly Listeners.</p>
+        </article>
+        <article class="card">
+          <h3>Brand x Artist</h3>
+          <p class="muted">Paid/Owned/Earned Mix, Short-Form Serie, KPI-Driven Optimization. 1,2 M Views.</p>
+        </article>
+        <article class="card">
+          <h3>Tourstart</h3>
+          <p class="muted">Routing, lokale PR, Radio-Push, Ticket-Funnels – 5 Städte ausverkauft.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt">
+    <div class="container">
+      <h2>Kontakt</h2>
+      <div class="card">
+        <p class="muted">
+          Schreib uns dein Projekt (Artist, Genre, Ziele, Zeitplan). Wir melden uns mit einem
+          kurzen Call-Slot und einer Ersteinschätzung.
+        </p>
+        <p>
+          <a class="btn" href="mailto:hello@artfuls.example?subject=Anfrage%20Musikmanagement">E-Mail senden</a>
+          <a class="btn ghost" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> ArtfulS. Alle Rechte vorbehalten.</div>
+      <div><a class="muted" href="impressum.html">Impressum</a> · <a class="muted" href="datenschutz.html">Datenschutz</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Jahr
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Dark/Light Toggle mit Speicherung
+    const root = document.documentElement;
+    const key = 'theme';
+    const saved = localStorage.getItem(key);
+    if(saved === 'light'){ root.classList.add('light'); }
+    document.getElementById('themeToggle').addEventListener('click', ()=>{
+      root.classList.toggle('light');
+      localStorage.setItem(key, root.classList.contains('light') ? 'light' : 'dark');
+    });
+  </script>
 </body>
 </html>
