@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Artful Business — Artist Management & Development</title>
-  <meta name="description" content="Artful Business unterstützt Artists beim Aufbau: Management, Release-Planung, Marketing und Booking.">
+  <meta name="description" content="Artful Business unterstützt Artists beim Aufbau und Wachstum: Management, Release-Planung, Marketing und Booking.">
   <link rel="icon" href="favicon.png">
   <style>
     /* ---------- Design-Variablen ---------- */
@@ -49,14 +49,17 @@
     }
     .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
     .brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
-    .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:var(--shadow)}
+    /* Für Bildlogo */
+    .logo{width:28px;height:28px;border-radius:8px;box-shadow:var(--shadow);object-fit:cover}
+    /* Falls du lieber das CSS-Gradient-Logo willst, ersetze im HTML <img> durch <span class="logo-box"></span> und nutze: */
+    .logo-box{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:var(--shadow)}
     .nav a{color:var(--muted)}
     .nav-links{display:flex;gap:1rem;flex-wrap:wrap}
     .toggle{border:1px solid var(--border);background:transparent;border-radius:12px;padding:.5rem .7rem;color:var(--muted);cursor:pointer}
 
     /* ---------- Hero ---------- */
     .hero{padding:72px 0 36px}
-    .hero h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.1;margin:0}
+    .hero h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.15;margin:0}
     .hero p{color:var(--muted);max-width:60ch}
     .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:18px}
 
@@ -84,12 +87,18 @@
   <header>
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Artful Business Start">
-        <span class="artfulbusiness.png"></span><span>Artful Business</span>
+        <!-- NUTZE EIN LOGO-BILD: -->
+        <img src="artfulbusiness.png" alt="Artful Business Logo" class="logo">
+        <span>Artful Business</span>
+
+        <!-- ODER (alternativ) NUR DAS FARBKÄSTCHEN:
+        <span class="logo-box" aria-hidden="true"></span><span>Artful Business</span>
+        -->
       </a>
       <nav class="nav-links">
         <a href="#services">Leistungen</a>
         <a href="#artists">Artists</a>
-        <a href="#cases">Cases</a>
+        <a href="#cases">Unsere Arbeit</a>
         <a href="#kontakt">Kontakt</a>
         <button id="themeToggle" class="toggle" title="Dark/Light umschalten">☾/☀︎</button>
       </nav>
@@ -99,7 +108,7 @@
   <!-- Hero -->
   <main id="top" class="container hero">
     <span class="pill">Artist Management & Development</span>
-    <h1>Wir helfen Artists, ihr Potenzial in echte Karriere umzuwandeln. Von der Vision bis zum Release – Strategie, Marketing & Live-Aufbau aus einer Hand. Unabhängig. Echt. Artful.</h1>
+    <h1>Wir helfen Artists, ihr Potenzial in echte Karriere zu verwandeln – von der Vision bis zum Release. Strategie, Marketing & Live-Aufbau aus einer Hand.</h1>
     <p class="muted">
       Artful Business arbeitet unabhängig mit Artists: Positionierung, Release-Planung,
       Digitalvertrieb, Content-Strategie, Kampagnen und Live-Planung – alles aus einer Hand.
@@ -113,23 +122,23 @@
   <!-- Leistungen -->
   <section id="services">
     <div class="container">
-      <h2>Was wir machen</h2>
+      <h2>Unsere Leistungen</h2>
       <div class="grid cards">
         <article class="card">
-          <h3>Artist Support</h3>
-          <p class="muted">Du hast Songs, aber dir fehlt der rote Faden? Wir helfen dir, dein Artist-Projekt klar zu positionieren – Sound, Story, Branding und Auftritt – damit aus Musik echte Identität wird.</p>
+          <h3>Artist Management</h3>
+          <p class="muted">Wir begleiten Artists auf jedem Level – vom ersten Release bis zur gewachsenen Karriere. Strategie, Planung und langfristige Entwicklung.</p>
         </article>
         <article class="card">
-          <h3>Release Begleitung</h3>
-          <p class="muted">Wir planen deinen Release strategisch: Song, Artwork, Upload, Promo & Kampagne. Du bekommst einen klaren Fahrplan – Schritt für Schritt zum erfolgreichen Launch.</p>
+          <h3>Release & Promotion</h3>
+          <p class="muted">Single bis Album: Timing, Distribution, Pitching, Kampagne. Klarer Fahrplan für starke Veröffentlichungen auf allen Plattformen.</p>
         </article>
         <article class="card">
-          <h3>Social Media & Content</h3>
-          <p class="muted">Wir entwickeln mit dir eine klare Content-Strategie – mit Ideen, die zu dir passen. Reels, Storytelling, Markenaufbau – kein Zufall, sondern Konzept.</p>
+          <h3>Content & Social Media</h3>
+          <p class="muted">Gemeinsam entwickeln wir eine authentische Content-Strategie: Reels, Storytelling, Community-Aufbau – passend zu dir und deiner Musik.</p>
         </article>
         <article class="card">
-          <h3>LLive & Netzwerk</h3>
-          <p class="muted">Wir öffnen Türen: Auftritte, Events, Kontakte und Kooperationen in der Szene. Gemeinsam bringen wir dich dorthin, wo deine Musik gehört wird.</p>
+          <h3>Live & Netzwerk</h3>
+          <p class="muted">Auftritte, Events, Kontakte und Kooperationen – wir öffnen Türen und unterstützen beim professionellen Live-Aufbau.</p>
         </article>
       </div>
     </div>
@@ -168,40 +177,26 @@
     </div>
   </section>
 
-  <!-- Cases -->
- <section id="cases">
-  <div class="container">
-    <h2>Unsere Arbeit</h2>
-    <div class="grid cards">
-
-      <article class="card">
-        <h3>Artist Development</h3>
-        <p class="muted">
-          Wir arbeiten eng mit Artists an langfristigen Strategien:
-          Sound, Branding, Teamstruktur und Businessplanung – individuell und realistisch.
-        </p>
-      </article>
-
-      <article class="card">
-        <h3>Release Planung & Support</h3>
-        <p class="muted">
-          Von Single bis Album: wir helfen bei Timing, Marketing, Distribution und
-          der bestmöglichen Präsentation deiner Musik auf Spotify, TikTok & Co.
-        </p>
-      </article>
-
-      <article class="card">
-        <h3>Community & Netzwerk</h3>
-        <p class="muted">
-          Wir vernetzen Artists, Producer:innen und Partner – 
-          für neue Chancen, Sessions und Kooperationen auf Augenhöhe.
-        </p>
-      </article>
-
+  <!-- Unsere Arbeit -->
+  <section id="cases">
+    <div class="container">
+      <h2>Unsere Arbeit</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Artist Development</h3>
+          <p class="muted">Langfristige Strategien: Sound, Branding, Teamstruktur und Businessplanung – individuell und realistisch.</p>
+        </article>
+        <article class="card">
+          <h3>Release-Planung & Support</h3>
+          <p class="muted">Von Single bis Album: Timing, Marketing, Distribution und bestmögliche Präsentation auf Spotify, TikTok & Co.</p>
+        </article>
+        <article class="card">
+          <h3>Community & Netzwerk</h3>
+          <p class="muted">Wir vernetzen Artists, Producer:innen und Partner – für neue Chancen, Sessions und Kooperationen auf Augenhöhe.</p>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- Kontakt -->
   <section id="kontakt">
@@ -209,13 +204,12 @@
       <h2>Kontakt</h2>
       <div class="card">
         <p class="muted">
-          Lass uns über dein Projekt sprechen.
-          Erzähl uns kurz, wer du bist, was du machst und wohin du willst – wir melden uns mit einem kurzen Call und ersten Ideen.
+          Lass uns über dein Projekt sprechen. Erzähl kurz, wer du bist, was du machst und wohin du willst – wir melden uns mit einem kurzen Call und ersten Ideen.
         </p>
         <p>
           <a class="btn" href="mailto:hello@artfulbusiness.example?subject=Anfrage%20Artist%20Management">Projekt vorstellen →</a>
-          <a class="btn ghost" href="https://instagram.com/Artful_Business" target="_blank" rel="noopener">Instagram</a>
-          <a class="btn ghost" href="https://www.tiktok.com/@artful.business.k" target="_blank" rel="noopener">TikTok</a>
+          <a class="btn ghost" href="https://instagram.com/Artful_Business" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="btn ghost" href="https://www.tiktok.com/@artful.business.k" target="_blank" rel="noopener noreferrer">TikTok</a>
         </p>
       </div>
     </div>
